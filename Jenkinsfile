@@ -9,7 +9,8 @@ pipeline {
             steps {
                 sh '''
                 ls
-                docker build -t $image_name:latest .
+                aws sts get-caller-identity
+                
                 '''            
             }
         }
