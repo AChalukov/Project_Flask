@@ -9,7 +9,6 @@ pipeline {
                 '''
             }
         }
-
         stage("Push") {
             steps {
                 sh '''
@@ -18,21 +17,12 @@ pipeline {
                 '''
             }
         }
-
-        stage("Inject credentials") {
-            steps {
-                sh '''
-                kubectl create secret docker-registry regcred  --docker-server=$(aws sts get-caller-identity --query 'Account' --output text).dkr.ecr.eu-central-1.amazonaws.com  --docker-username=AWS --docker-password=$(aws ecr get-login-password --region eu-central-1)
-                '''
-            }
-        }
-
         stage("Deploy") {
             steps {
                 sh '''
                 helm upgrade flask helm/ --install --wait --atomic
                 '''
-            }            
+            }
         }
     }
 }
