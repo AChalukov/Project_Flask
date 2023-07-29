@@ -20,7 +20,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 sh '''
-                helm upgrade flask helm/ --install --wait --atomic
+                helm upgrade flask helm/ --install --wait --atomic --set image.repository=$(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1)
                 '''
             }
         }
