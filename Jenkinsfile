@@ -6,7 +6,7 @@ pipeline {
                 sh '''
                 ls
                 docker build -t flask:v1 Flask-app
-                docker image ls 
+                docker image ls
                 '''
             }
         }
