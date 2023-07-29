@@ -1,15 +1,8 @@
 deployment:
    name: flask
    replicas: 2
-   image: $(deployment:
-   name: flask
-   replicas: 2
    # URL of ECR repo
    image: 327298254972.dkr.ecr.eu-central-1.amazonaws.com/flask
-   port: 5000
-service:
-   nodeport: 30000
-)
    tag: latest
    port: 5000
 service:
