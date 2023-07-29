@@ -1,7 +1,14 @@
 deployment:
    name: flask
    replicas: 2
-   image: 327298254972.dkr.ecr.eu-central-1.amazonaws.com/flask
+   image: $(deployment:
+   name: flask
+   replicas: 2
+   image: $(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1):latest
+   port: 5000
+service:
+   nodeport: 30000
+)
    tag: latest
    port: 5000
 service:
