@@ -5,7 +5,8 @@ pipeline {
             steps {
                 sh '''
                 ls
-                docker build -t flask:v1 Flask-app .
+                docker build -t flask:v1 Flask-app
+                docker image ls 
                 '''
             }
         }
