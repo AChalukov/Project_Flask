@@ -12,7 +12,8 @@ pipeline {
         stage("Push") {
             steps {
                 sh '''
-                docker push $(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1)flask:latest
+                docker tag flask:v1 $(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1):latest
+                docker push $(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1):latest
                 '''
             }
         }
