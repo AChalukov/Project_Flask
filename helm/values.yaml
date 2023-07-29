@@ -4,7 +4,7 @@ deployment:
    image: $(deployment:
    name: flask
    replicas: 2
-   image: $(aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1):latest
+   image: $(shell aws ecr describe-repositories --repository-names flask --query 'repositories[0].repositoryUri' --output text --region eu-central-1):latest
    port: 5000
 service:
    nodeport: 30000
